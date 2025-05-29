@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class ApiService {
 
-  api = "https://api.example.com/usuarios";
+  api = "http://localhost/";
 
   constructor(private http: HttpClient) { }
 
@@ -15,6 +15,12 @@ export class ApiService {
     .subscribe(respuesta => {
       return respuesta;
     });
+  }
+
+  traerEmpleados(){
+    let action = "Consulta";
+    console.log(this.api + '?action=' + action);
+    return this.http.get(this.api + '?action=' + action);
   }
 
 }

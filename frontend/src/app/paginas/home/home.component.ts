@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ApiService } from '../../services/api.service';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +11,12 @@ import { Router } from '@angular/router';
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
+  api = inject(ApiService);
+
   constructor(private router: Router){}
+  ngOnInit(){
+    this.llenarTabla();
+  }
   empleado = {
     nombre: "Ejemplo",
     dni: 0,
@@ -19,7 +25,7 @@ export class HomeComponent {
     descripcion: "Buen empleado",
     idArea: 1
   }
-  empleados = [this.empleado, this.empleado];
+  empleados: any;
 
   eliminar(empleado: any){
     console.log("Eliminar")
@@ -29,5 +35,11 @@ export class HomeComponent {
   }
   alta(){
     this.router.navigate(["/alta"]);
+  }
+
+  llenarTabla(){
+    this.api.traerEmpleados().subscribe(data => {
+      this.empleados = data;
+    });
   }
 }

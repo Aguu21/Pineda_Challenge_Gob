@@ -1,4 +1,7 @@
 <?php
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type");
 if (isset($_GET["action"])){
     switch($_SERVER["REQUEST_METHOD"]){
         case "POST":
@@ -22,7 +25,7 @@ if (isset($_GET["action"])){
         case "GET":
             switch ($_GET["action"]){
                 case "Consulta":
-                    include "ConsultasEmpleado.php";
+                    include "consultasEmpleado.php";
                     return ConsultasEmpleado::TraerListado();
                     break;
                 default:
