@@ -1,0 +1,36 @@
+<div class="main">
+    <div class="card">
+        <div class="boton">
+            <button (click)="alta()">REGISTRAR EMPLEADO</button>
+        </div>
+        <div class="tabla">
+            <table>
+            <thead>
+                <tr>
+                <th>Nombre</th>
+                <th>DNI</th>
+                <th>Fecha de Nacimiento</th>
+                <th>Desarrollador</th>
+                <th>Descripción</th>
+                <th>ID Área</th>
+                <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let empleado of empleados">
+                <td>{{ empleado.nombre }}</td>
+                <td>{{ empleado.dni }}</td>
+                <td>{{ empleado.fecha_nac }}</td>
+                <td>{{ empleado.desarrollador }}</td>
+                <td>{{ empleado.descripcion }}</td>
+                <td>{{ empleado.idArea }}</td>
+                <td>
+                    <button (click)="modificar(empleado)">Modificar</button>
+                    <button (click)="eliminar(empleado)">Eliminar</button>
+                </td>
+                </tr>
+            </tbody>
+            </table>
+        </div>
+    </div>
+</div>
