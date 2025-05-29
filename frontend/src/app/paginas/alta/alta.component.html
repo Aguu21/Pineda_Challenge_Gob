@@ -1,0 +1,37 @@
+<div class="main">
+    <div class="card">
+        <h1>REGISTRO</h1>
+        <div class="inputs">
+            <div class="input">
+                <label for="">Nombre</label>
+                <input class="inputTipo" [(ngModel)]="empleado['nombre']" type="text">
+            </div>
+            <div class="input">
+                <label for="">DNI</label>
+                <input class="inputTipo" [(ngModel)]="empleado['dni']" type="number">
+            </div>
+            <div class="input">
+                <label for="">Fecha de Nacimiento</label>
+                <input class="inputTipo" [(ngModel)]="empleado['fecha_nac']" type="date">
+            </div>
+            <div class="input">
+                <label for="">Descripción</label>
+                <textarea class="inputTipo" [(ngModel)]="empleado['descripcion']" rows="4" placeholder="Escriba aquí..."></textarea>
+            </div>
+            <div class="input">
+                <label for="">Área</label>
+                <select class="inputTipo" name="" id="">
+                    <option value="">Elija un Área</option>
+                </select>
+            </div>
+            <div class="input">
+                <label for="">¿Desarrollador?</label>
+                <input class="inputTipo checkbox" [(ngModel)]="empleado['desarrollador']" type="checkbox">
+            </div>
+        </div>
+        <div class="boton">
+            <button (click)="volver()">VOLVER</button>
+            <button (click)="registrar()">REGISTRAR</button>
+        </div>
+    </div>
+</div>

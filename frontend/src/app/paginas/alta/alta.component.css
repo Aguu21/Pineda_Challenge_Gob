@@ -1,0 +1,109 @@
+
+.main{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #ddd;
+    border-radius: 15px;
+    border: 5px solid #333;
+}
+
+h1{
+    padding: 5px;
+}
+
+.inputs{
+    display: flex;
+    flex-direction: column;
+    width: 98%;
+}
+
+.input{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    padding: 2px;
+}
+
+.inputTipo{
+    padding: 5px;
+    margin-left: 5px;
+    border: none;
+}
+
+.checkbox{
+    height: 100%;
+}
+
+textarea{
+    resize: none;
+}
+
+.boton{
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+    width: 90%;
+    justify-content: space-between;
+}
+
+.boton button{
+    padding: 15px;
+    width: 40%;
+    border: none;
+    border-radius: 15px;
+    background-color: #ff4040;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.boton button:hover{
+    background-color: #a72a2a;
+}
+
+@media (orientation: portrait) {
+    .card{
+        width: 80vw;
+    }
+    .input{
+        font-size: 18px;
+    }
+    .inputTipo{
+        font-size: 15px;
+    }
+    .input label{
+    width: 40%;
+    }
+    .inputTipo{
+        width: 60%;
+    }
+}
+@media (orientation: landscape) {
+    .card{
+        width: 40vw;
+    }
+    .input{
+        font-size: 25px;
+    }
+    .inputTipo{
+        font-size: 20px;
+    }
+    .input label{
+        width: 30%;
+    }
+    .inputTipo{
+        width: 70%;
+    }
+}
