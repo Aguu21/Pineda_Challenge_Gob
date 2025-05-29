@@ -1,16 +1,21 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { ApiService } from '../../services/api.service';
 
 @Component({
   selector: 'app-alta',
   imports: [CommonModule, FormsModule],
   templateUrl: './alta.component.html',
-  styleUrl: './alta.component.css'
+  styleUrl: './alta.component.css',
+  standalone: true
 })
 export class AltaComponent {
-  constructor(private router: Router){}
+
+  api = inject(ApiService);
+  constructor(private router: Router, private http: HttpClient){}
 
   empleado = {
     nombre: "",
@@ -25,7 +30,12 @@ export class AltaComponent {
     this.router.navigate(["/home"]);
   }
 
-  registrar(){
+  validarEmpleado(){
     return;
+  }
+
+  registrar(){
+    this.validarEmpleado();
+    let error = this.api.altaEmpleado(this.empleado);
   }
 }
