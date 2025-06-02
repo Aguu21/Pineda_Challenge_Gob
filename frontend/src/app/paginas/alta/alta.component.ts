@@ -18,6 +18,7 @@ export class AltaComponent {
   constructor(private router: Router, private http: HttpClient){}
 
   empleado = {
+    action: "Alta",
     nombre: "",
     dni: 0,
     fecha_nac: "",
@@ -35,7 +36,16 @@ export class AltaComponent {
   }
 
   registrar(){
-    this.validarEmpleado();
-    let error = this.api.altaEmpleado(this.empleado);
+    //this.validarEmpleado();
+    this.api.altaEmpleado(this.empleado).subscribe({
+    next: (respuesta: any) => {
+      if(respuesta.error){
+        console.log("Error: ", respuesta.error, " ", respuesta.datosRecibidos);
+      }
+      else{
+        console.log("Usuario Registrado con éxito");
+      }
+    }
+  });
   }
 }

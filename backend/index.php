@@ -7,18 +7,21 @@ if (isset($_GET["action"])){
         case "POST":
             switch ($_GET["action"]){
                 case "Alta":
-                    if (isset($_POST['Nombre'], $_POST['DNI'], 
-                            $_POST['Fecha_Nac'], $_POST['Desarrollador'], 
-                            $_POST['Descripcion'], $_FILES['IdArea'])
-                        ) {
+                    $rawInput = file_get_contents("php://input");
+                    $datos = json_decode($rawInput, true);
+
+                    if (isset($datos['nombre'], $datos['dni'], 
+                        $datos['fecha_nac'], $datos['desarrollador'],
+                        $datos['descripcion'], $datos['idArea'])) 
+                    { 
                         include "empleadoAlta.php";
                     }
                     else{
-                        echo "Faltaron parametros";
+                        echo json_encode(["error" => "Faltaron parametros",]);
                     }
                     break;
                 default:
-                    echo "Accion no incluida";
+                    echo json_encode(["error" => "Esa acción no existe"]);
                     break;
             }
             break;
@@ -29,6 +32,7 @@ if (isset($_GET["action"])){
                     return ConsultasEmpleado::TraerListado();
                     break;
                 default:
+                    echo json_encode(["error" => "Esa acción no existe"]);
                     break;
                 }
             break;
@@ -38,22 +42,22 @@ if (isset($_GET["action"])){
                     include "empleadoModificar.php";
                     break;
                 default:
-                echo "No existe esa accion";
+                    echo json_encode(["error" => "Esa acción no existe"]);
                     break;
             }
             break;
-        case "DELTE":
+        case "DELETE":
             switch ($_GET["action"]){
                 case "Borrar":
                     include "empleadoBorrar.php";
                     break;
                 default:
-                echo "No existe esa accion";
+                    echo json_encode(["error" => "Esa acción no existe"]);
                     break;
             }
             break;
         default:
-            echo "No programado";
+            echo json_encode(["error" => "Método no incluido"]);
             break;
     }
 }

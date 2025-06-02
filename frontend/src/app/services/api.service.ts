@@ -11,16 +11,11 @@ export class ApiService {
   constructor(private http: HttpClient) { }
 
   altaEmpleado(body: any){
-    this.http.post(this.api, body)
-    .subscribe(respuesta => {
-      return respuesta;
-    });
+    return this.http.post(this.api + '?action=' + body.action, body);
   }
 
   traerEmpleados(){
-    let action = "Consulta";
-    console.log(this.api + '?action=' + action);
-    return this.http.get(this.api + '?action=' + action);
+    return this.http.get(this.api + '?action=Consulta');
   }
 
 }

@@ -5,10 +5,10 @@
 ---
 # Primera Instancia
 Implementé la estructura que va a tener el repositorio, diviendo backend y frontend, así como la base de un proyecto Angular y una API Rest con PHP.
----
+
 # Segunda Instancia
 Decidir el apartado visual de la página para el '/home' y '/alta'.
----
+
 # Tercera Instancia
 Comenzar con la implementación de la api y las conexiones a la DB.
 
