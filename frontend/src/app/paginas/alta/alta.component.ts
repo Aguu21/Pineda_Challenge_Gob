@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { ApiService } from '../../services/api.service';
+import { dateTimestampProvider } from 'rxjs/internal/scheduler/dateTimestampProvider';
 
 @Component({
   selector: 'app-alta',
@@ -70,7 +71,19 @@ export class AltaComponent {
 
   //Comprobar que los campos sean correctos
   validarEmpleado(){
-    return;
+    if(!this.empleado.dni || this.empleado.dni < 0 || !this.empleado.idArea ||
+      !this.empleado.fecha_nac.trim() || !this.empleado.descripcion.trim() || 
+      !this.empleado.nombre.trim() || !this.validarAño()){
+        return false
+    }
+    return true
+  }
+
+  //Comprobar que no se eligió un año futuro a la fecha
+  validarAño(){
+    let añoHoy = new Date().getFullYear();
+    let añoElegido = new Date(this.empleado.fecha_nac).getFullYear();
+    return añoElegido < añoHoy;
   }
 
   //Traer los valores de la tabla empleados
@@ -82,7 +95,10 @@ export class AltaComponent {
 
   //Registrar o modificar un empleado según los campos
   registrar(){
-    //this.validarEmpleado();
+    if(!this.validarEmpleado()){
+      console.log("Falta completar parámetros")
+      return;
+    }
     
     if(this.empleado.action == "Modificar"){
       //Modificar
@@ -93,6 +109,8 @@ export class AltaComponent {
             }
             else{
               console.log("Usuario Modificado con éxito");
+                  this.vaciar();
+                  this.router.navigate(["/home"]);
             }
           }
         });
@@ -106,11 +124,10 @@ export class AltaComponent {
             }
             else{
               console.log("Usuario Registrado con éxito");
+                  this.vaciar();
             }
           }
         });
     }
-    this.vaciar();
-    this.router.navigate(["/home"]);
   }
 }
