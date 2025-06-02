@@ -24,6 +24,7 @@ export class HomeComponent {
   }
 
   empleado = {
+    action: "",
     idEmpleado: 0,
     nombre: "Ejemplo",
     dni: 0,
@@ -35,7 +36,18 @@ export class HomeComponent {
   empleados: any;
 
   eliminar(empleado: any){
-    console.log("Eliminar")
+    empleado.action = "Eliminar";
+    this.api.eliminarEmpleado(empleado.idEmpleado).subscribe({
+      next: (respuesta: any) => {
+        if(respuesta.error){
+          console.log("Error: ", respuesta.error);
+        }
+        else{
+          console.log("Usuario Eliminado con éxito");
+          this.llenarTabla();
+        }
+      }
+    });
   }
   modificar(empleado: any){
     this.router.navigate(['/alta'], {

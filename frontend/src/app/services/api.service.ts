@@ -26,4 +26,8 @@ export class ApiService {
     return this.http.put(this.api + '?action=' + body.action, body);
   }
 
+  eliminarEmpleado(idEmpleado: any){
+    return this.http.delete(this.api + '?action=Eliminar&idEmpleado=' + idEmpleado );
+  }
+
 }
