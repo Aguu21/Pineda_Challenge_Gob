@@ -24,6 +24,12 @@ CREATE TABLE `empleados` (
   CONSTRAINT `fk_empleados_area` FOREIGN KEY (`idArea`) REFERENCES `areas` (`idArea`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci AUTO_INCREMENT=9;
 
+INSERT INTO `empleados` (`idEmpleado`, `nombre`, `dni`, `fecha_nac`, `desarrollador`, `descripcion`, `idArea`) VALUES
+(2, 'Agustín Santella', 45753165, '2004-04-10', 1, 'Mido un metro ochenta y uno, tengo un sillón azul y en mi cuarto hay un baúl. Me gusta el almendrado', 1),
+(3, 'Agustín Pineda', 45753164, '2004-05-21', 0, 'Prueba Modificación', 2),
+(7, 'Cristina S.', 20302240, '1990-05-02', 0, 'Lorem Impsum', 4),
+(8, 'Automata Copia', 10101010, '1000-01-01', 1, 'Me han cambiado Bip Bop', 2);
+
 CREATE TABLE `areas` (
   `idArea` int(11) NOT NULL,
   `nombre` varchar(50) NOT NULL
