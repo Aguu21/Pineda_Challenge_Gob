@@ -10,12 +10,20 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
+  traerEmpleados(){
+    return this.http.get(this.api + '?action=ConsultaEmpleados');
+  }
+
+  traerAreas(){
+    return this.http.get(this.api + '?action=ConsultaAreas');
+  }
+
   altaEmpleado(body: any){
     return this.http.post(this.api + '?action=' + body.action, body);
   }
 
-  traerEmpleados(){
-    return this.http.get(this.api + '?action=Consulta');
+  modificarEmpleado(body: any){
+    return this.http.put(this.api + '?action=' + body.action, body);
   }
 
 }

@@ -20,9 +20,10 @@
             </div>
             <div class="input">
                 <label for="">Área</label>
-                <select class="inputTipo" [(ngModel)]="empleado['idArea']" name="" id="">
-                    <option value="">Elija un Área</option>
-                    <option value="1">1</option>
+                <select class="inputTipo" [(ngModel)]="empleado['idArea']" name="area">
+                    <option *ngFor="let area of areas" [value]="area.idArea">
+                        {{ area.nombre }}
+                    </option>
                 </select>
             </div>
             <div class="input">

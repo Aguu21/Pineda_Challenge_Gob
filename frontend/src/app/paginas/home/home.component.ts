@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, inject  } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from '../../services/api.service';
@@ -14,10 +14,17 @@ export class HomeComponent {
   api = inject(ApiService);
 
   constructor(private router: Router){}
+  
   ngOnInit(){
     this.llenarTabla();
   }
+
+  ngAfterViewInit() {
+    this.llenarTabla();
+  }
+
   empleado = {
+    idEmpleado: 0,
     nombre: "Ejemplo",
     dni: 0,
     fecha_nac: "01-02-2025",
@@ -31,7 +38,9 @@ export class HomeComponent {
     console.log("Eliminar")
   }
   modificar(empleado: any){
-    console.log("Modificar")
+    this.router.navigate(['/alta'], {
+          queryParams: { data: JSON.stringify(empleado)}
+        });
   }
   alta(){
     this.router.navigate(["/alta"]);

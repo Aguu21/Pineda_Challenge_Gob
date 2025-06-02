@@ -27,9 +27,13 @@ if (isset($_GET["action"])){
             break;
         case "GET":
             switch ($_GET["action"]){
-                case "Consulta":
+                case "ConsultaEmpleados":
                     include "consultasEmpleado.php";
                     return ConsultasEmpleado::TraerListado();
+                    break;
+                case "ConsultaAreas":
+                    include "consultasEmpleado.php";
+                    return ConsultasEmpleado::TraerAreas();
                     break;
                 default:
                     echo json_encode(["error" => "Esa acción no existe"]);
@@ -39,7 +43,18 @@ if (isset($_GET["action"])){
         case "PUT":
             switch ($_GET["action"]){
                 case "Modificar":
-                    include "empleadoModificar.php";
+                    $rawInput = file_get_contents("php://input");
+                    $datos = json_decode($rawInput, true);
+
+                    if (isset($datos['nombre'], $datos['dni'], 
+                        $datos['fecha_nac'], $datos['desarrollador'],
+                        $datos['descripcion'], $datos['idArea'], $datos['idEmpleado'])) 
+                    { 
+                        include "empleadoModificar.php";
+                    }
+                    else{
+                        echo json_encode(["error" => "Faltaron parametros",]);
+                    }
                     break;
                 default:
                     echo json_encode(["error" => "Esa acción no existe"]);
