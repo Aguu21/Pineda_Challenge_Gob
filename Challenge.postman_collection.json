@@ -1,0 +1,164 @@
+{
+	"info": {
+		"_postman_id": "c752d603-71d2-4a5b-87e0-f3ce2fee4450",
+		"name": "Challenge",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37958058"
+	},
+	"item": [
+		{
+			"name": "GetAreas",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/?action=ConsultaAreas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						""
+					],
+					"query": [
+						{
+							"key": "action",
+							"value": "ConsultaAreas"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetEmpleados",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/?action=ConsultaEmpleados",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						""
+					],
+					"query": [
+						{
+							"key": "action",
+							"value": "ConsultaEmpleados"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Alta",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Automata\",\r\n    \"dni\": 10101010,\r\n    \"fecha_nac\": \"1000-01-01\",\r\n    \"desarrollador\": true,\r\n    \"descripcion\": \"Bip Bop\",\r\n    \"idArea\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/?action=Alta",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						""
+					],
+					"query": [
+						{
+							"key": "action",
+							"value": "Alta"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Modificar",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"idEmpleado\": 8,\r\n    \"nombre\": \"Automata\",\r\n    \"dni\": 10101010,\r\n    \"fecha_nac\": \"1000-01-01\",\r\n    \"desarrollador\": true,\r\n    \"descripcion\": \"Me han cambiado Bip Bop\",\r\n    \"idArea\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/?action=Modificar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						""
+					],
+					"query": [
+						{
+							"key": "action",
+							"value": "Modificar"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/?action=Eliminar&idEmpleado=12",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						""
+					],
+					"query": [
+						{
+							"key": "action",
+							"value": "Eliminar"
+						},
+						{
+							"key": "idEmpleado",
+							"value": "12"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
