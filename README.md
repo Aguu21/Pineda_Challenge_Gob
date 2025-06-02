@@ -14,3 +14,6 @@ Comenzar con la implementación de la api y las conexiones a la DB.
 
 # Cuarta Instancia
 Probar el funcionamiento al conectar backend con frontend.
+
+# Quinta Instancia
+Implementar el alta
