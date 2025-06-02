@@ -1,22 +1,64 @@
-# Pineda_Challenge_Gob
----
-# DER
+- Necesario
+    - Angular
+    - XAMPP Apache
+    - XAMPP MySQL
+- Comandos
+    - Sobre /backend: ng serve
+    - Para frontend cambié la ruta que usa XAMPP de httpd.conf
+
+# DB
+## DER 
 ![DER](assets/challenge.png)
----
-# Primera Instancia
-Implementé la estructura que va a tener el repositorio, diviendo backend y frontend, así como la base de un proyecto Angular y una API Rest con PHP.
+## TABLAS E INSERTS
+```
+CREATE TABLE `empleados` (
+  `idEmpleado` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(50) NOT NULL,
+  `dni` int(8) NOT NULL,
+  `fecha_nac` date NOT NULL,
+  `desarrollador` tinyint(1) NOT NULL,
+  `descripcion` varchar(100) NOT NULL,
+  `idArea` int(11) NOT NULL,
+  PRIMARY KEY (`idEmpleado`),
+  KEY `fk_empleados_area` (`idArea`),
+  CONSTRAINT `fk_empleados_area` FOREIGN KEY (`idArea`) REFERENCES `areas` (`idArea`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci AUTO_INCREMENT=9;
 
-# Segunda Instancia
-Decidir el apartado visual de la página para el '/home' y '/alta'.
+CREATE TABLE `areas` (
+  `idArea` int(11) NOT NULL,
+  `nombre` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-# Tercera Instancia
-Comenzar con la implementación de la api y las conexiones a la DB.
+INSERT INTO `areas` (`idArea`, `nombre`) VALUES
+(1, 'Sistemas'),
+(2, 'Mantenimiento'),
+(3, 'Ventas'),
+(4, 'RRHH');
+```
+- Primera Instancia
+    - Definí partes de backend y frontend
+    - Backend con PHP
+    - Frontend con Angular
 
-# Cuarta Instancia
-Probar el funcionamiento al conectar backend con frontend.
+- Segunda Instancia
+    - Definir el apartado visual para:
+        - '/home'
+        - '/alta'
 
-# Quinta Instancia
-Implementar el alta
+- Tercera Instancia
+    - Implementar los archivos que permiten la conexión con la DB.
 
-# Sexta Instancia
-Implementar actualizar y eliminar 
+- Cuarta Instancia
+    - Comprobar el funcionamiento de la api implementando:
+        - Traer Listado de Empleados
+
+- Quinta Instancia
+    - Implementar la funcionalidad de Alta
+
+- Sexta Instancia
+    - Implementar las funcionalidades: 
+        - Actualizar empleado
+        - Eliminar empleado 
+
+- Septima Instancia
+    - Documentar, ser consistente y validar
