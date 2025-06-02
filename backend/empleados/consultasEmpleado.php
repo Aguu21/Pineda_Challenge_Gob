@@ -1,7 +1,8 @@
 <?php
-require_once 'DB.php';
+require_once 'utils/DB.php';
 
 class ConsultasEmpleado{
+    //Listado de empleados
     public static function TraerListado(){
         header('Content-Type: application/json; charset=utf-8');
 
@@ -16,6 +17,7 @@ class ConsultasEmpleado{
         echo json_encode($data);
     }
 
+    //Empleado según su id
     public static function TraerEmpleado($id){
         header('Content-Type: application/json; charset=utf-8');
 
@@ -30,6 +32,7 @@ class ConsultasEmpleado{
         echo json_encode($data);
     }
 
+    //Listado de áreas
     public static function TraerAreas(){
         header('Content-Type: application/json; charset=utf-8');
 

@@ -1,4 +1,5 @@
 <?php
+//Conexión a la DB de XAMPP
 class DB {
     private static $host = 'localhost';
     private static $nombreDB = 'challenge';

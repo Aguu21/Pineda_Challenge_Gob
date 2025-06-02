@@ -1,8 +1,9 @@
 <?php
-require_once 'DB.php';
+require_once 'utils/DB.php';
 
 header('Content-Type: application/json; charset=utf-8');
 
+//Dar de baja un empleado según id
 $pdo = DB::connect();
 
 $prueba = $pdo->prepare(

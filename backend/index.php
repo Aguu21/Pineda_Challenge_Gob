@@ -1,10 +1,13 @@
 <?php
+// Headers para poder acceder en desarrollo
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type");
+
+//Controla el flujo de la api
 if (isset($_GET["action"])){
-    $rawInput = file_get_contents("php://input");
-    $datos = json_decode($rawInput, true);
+    $input = file_get_contents("php://input");
+    $datos = json_decode($input, true);
     switch($_SERVER["REQUEST_METHOD"]){
         case "POST":
             switch ($_GET["action"]){
@@ -13,7 +16,7 @@ if (isset($_GET["action"])){
                         $datos['fecha_nac'], $datos['desarrollador'],
                         $datos['descripcion'], $datos['idArea'])) 
                     { 
-                        include "empleadoAlta.php";
+                        include "empleados/empleadoAlta.php";
                     }
                     else{
                         echo json_encode(["error" => "Faltaron parametros",]);
@@ -27,11 +30,11 @@ if (isset($_GET["action"])){
         case "GET":
             switch ($_GET["action"]){
                 case "ConsultaEmpleados":
-                    include "consultasEmpleado.php";
+                    include "empleados/consultasEmpleado.php";
                     return ConsultasEmpleado::TraerListado();
                     break;
                 case "ConsultaAreas":
-                    include "consultasEmpleado.php";
+                    include "empleados/consultasEmpleado.php";
                     return ConsultasEmpleado::TraerAreas();
                     break;
                 default:
@@ -46,7 +49,7 @@ if (isset($_GET["action"])){
                         $datos['fecha_nac'], $datos['desarrollador'],
                         $datos['descripcion'], $datos['idArea'], $datos['idEmpleado'])) 
                     { 
-                        include "empleadoModificar.php";
+                        include "empleados/empleadoModificar.php";
                     }
                     else{
                         echo json_encode(["error" => "Faltaron parametros",]);
@@ -62,7 +65,7 @@ if (isset($_GET["action"])){
                 case "Eliminar":
                     if (isset($_GET['idEmpleado'])) 
                     { 
-                        include "empleadoEliminar.php";
+                        include "empleados/empleadoEliminar.php";
                     }
                     else{
                         echo json_encode(["error" => "Faltaron parametros",]);

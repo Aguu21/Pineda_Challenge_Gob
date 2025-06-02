@@ -1,8 +1,9 @@
 <?php
-require_once 'DB.php';
+require_once 'utils/DB.php';
 
 header('Content-Type: application/json; charset=utf-8');
 
+//Modificar un empleado dada su id
 $pdo = DB::connect();
 
 $prueba = $pdo->prepare(
@@ -10,6 +11,7 @@ $prueba = $pdo->prepare(
     SET nombre = :nombre, dni = :dni, fecha_nac = :fecha_nac, 
     desarrollador = :desarrollador, descripcion = :descripcion, idArea = :idArea 
     WHERE idEmpleado = :idEmpleado");
+    
 $prueba->execute(
     ["nombre" => $datos['nombre'], 
     "dni" => $datos['dni'],

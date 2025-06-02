@@ -4,6 +4,8 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
+
+// Todas las funcionalidades que requieren acceso a la api
 export class ApiService {
 
   api = "http://localhost/";

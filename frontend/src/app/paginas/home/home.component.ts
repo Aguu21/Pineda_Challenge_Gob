@@ -11,7 +11,21 @@ import { ApiService } from '../../services/api.service';
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
+
   api = inject(ApiService);
+
+  //Valores que se usan para llenar la <table>
+  empleado = {
+    action: "", //Acción a tomar en la api
+    idEmpleado: 0,
+    nombre: "Ejemplo",
+    dni: 0,
+    fecha_nac: "01-02-2025",
+    desarrollador: true,
+    descripcion: "Ejemplo",
+    idArea: 1
+  }
+  empleados: any;
 
   constructor(private router: Router){}
   
@@ -23,18 +37,7 @@ export class HomeComponent {
     this.llenarTabla();
   }
 
-  empleado = {
-    action: "",
-    idEmpleado: 0,
-    nombre: "Ejemplo",
-    dni: 0,
-    fecha_nac: "01-02-2025",
-    desarrollador: true,
-    descripcion: "Buen empleado",
-    idArea: 1
-  }
-  empleados: any;
-
+  //Eliminar un empleado de la tabla
   eliminar(empleado: any){
     empleado.action = "Eliminar";
     this.api.eliminarEmpleado(empleado.idEmpleado).subscribe({
@@ -49,18 +52,30 @@ export class HomeComponent {
       }
     });
   }
-  modificar(empleado: any){
-    this.router.navigate(['/alta'], {
-          queryParams: { data: JSON.stringify(empleado)}
-        });
+
+  //Modificar un empleado de la tabla
+  modificar(empleado: any){ 
+    this.router.navigate(["/alta"], {
+      queryParams: { data: JSON.stringify(empleado)}
+    });
   }
+
+  //Poder dar de alta en otra pantalla
   alta(){
     this.router.navigate(["/alta"]);
   }
 
+  //Traer los valores de la tabla empleados
   llenarTabla(){
-    this.api.traerEmpleados().subscribe(data => {
-      this.empleados = data;
+    this.api.traerEmpleados().subscribe({
+      next: (respuesta: any) => {
+        if(respuesta.error){
+          console.log("Error: ", respuesta.error);
+        }
+        else{
+          this.empleados = respuesta;
+        }
+      }
     });
   }
 }

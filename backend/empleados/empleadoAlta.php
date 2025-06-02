@@ -1,13 +1,15 @@
 <?php
-require_once 'DB.php';
+require_once 'utils/DB.php';
 
 header('Content-Type: application/json; charset=utf-8');
 
+//Dar de alta empleados
 $pdo = DB::connect();
 
 $prueba = $pdo->prepare(
     "INSERT INTO empleados (nombre, dni, fecha_nac, desarrollador, descripcion, idArea) 
     VALUES (:nombre, :dni, :fecha_nac, :desarrollador, :descripcion, :idArea)");
+
 $prueba->execute(
     ["nombre" => $datos['nombre'], 
     "dni" => $datos['dni'],
@@ -16,6 +18,7 @@ $prueba->execute(
     "descripcion" => $datos['descripcion'],
     "idArea" => $datos['idArea']
 ]);
+
 $data = $prueba->fetch(PDO::FETCH_ASSOC);
 
 DB::disconnect();
