@@ -17,3 +17,6 @@ Probar el funcionamiento al conectar backend con frontend.
 
 # Quinta Instancia
 Implementar el alta
+
+# Sexta Instancia
+Implementar actualizar y eliminar 
